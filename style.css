@@ -11,13 +11,7 @@
     justify-content: center;
     margin-left: 0 auto;
   
-  }
-  
-  .imagen {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
-  
+
   }
   
   
@@ -26,62 +20,6 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 5rem;
     color: var(--secondary-color);
-  }
-  
-  
-  .parrafo1 {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
-  
-  }
-  
-  .parrafo2 {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
-  
-  }
-  
-  .parrafo3 {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
-  
-  }
-  
-  .parrafo4 {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
-  
-  }
-  
-  .parrafo5 {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
-  
-  }
-  
-  
-  .barra {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
-  
-  }
-  
-  .tecnologia {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
-  }
-  
-  .tecparrafo {
-    display: flex;
-    justify-content: center;
-    margin-left: 0 auto;
   }
   
   
