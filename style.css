@@ -3,14 +3,14 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-  
+
   }
-  
+
   .titulo {
     display: flex;
     justify-content: center;
     margin-left: 0 auto;
-  
+
 
   }
   .derecha {
@@ -26,9 +26,9 @@
     gap: 5rem;
     color: var(--secondary-color);
   }
-  
-  
-  
+
+
+
   .estilogris {
     background-color: grey;
   }
@@ -47,3 +47,21 @@
   margin: 4rem 0;
 }
 
+
+.contenido {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.objetivo{
+  margin-left: 40px;
+}
+
+.objetivos_esp{
+  margin-right: 40px;
+
+.html{
+    height: 100%;
+    width: 100%;
+}
