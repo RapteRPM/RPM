@@ -1,142 +1,359 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>RPM</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        h2 {
+            margin: 20px 0 10px;
+            color: #333;
+            font-size: 2em;
+        }
+        h4 {
+            margin: 10px 0;
+            color: #555;
+            font-size: 1.4em;
+        }
+        .header-options {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .header-option {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #0056b3;
+            transition: background-color 0.3s;
+            font-size: 1.1em;
+        }
+        .header-option:hover {
+            background-color: #004494;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #007BFF;
+        }
+        .content-section {
+            display: flex;
+            align-items: flex-start;
+        }
+        .text-content {
+            margin-left: 20px;
+            flex: 1;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        img {
+            max-width: 300px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #007BFF;
+            color: white;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        .contenido {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .objetivos, .objjetivos_esp {
+            width: 48%;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .titulo {
+            margin-top: 30px;
+        }
+        ol {
+            margin-left: 20px;
+        }
+    </style>
 </head>
-
 <body>
-  <header class="titulo">
-    <h1>RPM</h1>
-  </header>
 
-  
-  <div>
-    <nav class="titulo">
-
-      <ul class="nav-links">
-        <li><a href="#problematicas">RPM</a> </li>
-        <li><a href="#imagenes">MODELOS RPM</a></li>
-        <li><a href="#contacto">CONTACTENOS</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <div class="section-container">
-  <div class="titulo">
-    <div>
-      <img src="img/logo.png.png" alt="imagen" width="600" height="400">
-    </div>
-  </div>
-
-  <section id="problematicas">
-    <div class="titulo">
-          <h2>PROBLEMATICA A RESOLVER</h2>
-    </div>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 20px; background-color: #007BFF; color: white;">
+        <div style="display: flex; align-items: center;">
+            <img src="https://raw.githubusercontent.com/RapteRPM/RPM/main/img/LOGO.jpg" alt="Logo" style="max-width: 100px; margin-right: 20px;">
+            <h1 style="margin: 0;">RPM</h1>
+        </div>
+        <div class="header-options">
+            <a href="#" class="header-option" onclick="showSection('home')">Inicio</a>
+            <a href="#" class="header-option" onclick="showSection('about')">Acerca de Nosotros</a>
+            <a href="#" class="header-option" onclick="showSection('sem1')">Semestre 1</a>
+            <a href="#" class="header-option" onclick="showSection('sem2')">Semestre 2</a>
+            <a href="#" class="header-option" onclick="showSection('sem3')">Semestre 3</a>
+            <a href="#" class="header-option" onclick="showSection('contact')">Contáctanos</a>
+        </div>
+    </header>
     
-    <div>
-      <p> Hemos evidenciado que los usuarios de motocicleta cuentan con ciertos problemas al momento de conseguir repuestos, accesorios y talleres. Por lo que recurren a llevar sus motos a lugares inseguros donde se deja a la suerte el tipo de servicio “profesional” que cuente el taller o procedencia legal de los artículos a comprar, debido a que muchas veces no contamos con opiniones/reseñas de otras personas donde nos puedan advertir o recomendar algún lugar además de desconocer las ubicaciones de talleres o tiendas cercanas. Sumado a eso encontramos que en casos de quedar varados suele ser difícil solicitar servicios de grúa dentro y en los alrededores de la ciudad debido a que no suelen contar con números de contacto. Por otro lado la problemática de seguridad virtual al momento de realizar compras es una realidad que se esta presentando con mas frecuencia cada ves debido a que no cuentan con suficientes filtros al  momento de crear un perfil de vendedor.
-      </p>
-    </div>
-  </section>
-
     
-  <div class="contenido">
-    <div class="objetivos">
-        <h2>OBJETIVO DEL PROYECTO</h2>
-       <div>
-         <p>El objetivo del proyecto RPM es generar una interacción segura, eficiente y confiable entre compradores y vendedores que facilite la comercialización y adquisición de moto partes en la<br> ciudad de Bogotá y así promover el crecimiento sostenible del negocio sea virtual o físico. A través del desarrollo de un sistema de información web con un meticuloso proceso de creación de<br> perfiles verificados, además de realizar una herramienta de búsqueda<br> y comunicación que complemente la interacción entre comprador<br> y vendedor tanto en la búsqueda de autopartes como en adquirir<br> servicios mecánicos. 
-         Como extra crear una biblioteca en donde nuestros<br> usuarios puedan conseguir números de contacto de grúas o mecánicos<br> para asistencia en caso de que la motocicleta requiera alguno de estos servicios.
-               </p>
+    
+
+<div class="container" id="home">
+    <h2>Bienvenido a RPM</h2>
+
+    <h4>Problema a resolver</h4>
+    <div class="content-section">
+        <img src="https://blog.socialab.com/wp-content/uploads/2019/02/innovacion-social-resolucion-de-problemas.jpg" alt="Problemas a resolver">
+        <div class="text-content">
+            <p>Los usuarios de motocicletas enfrentan dificultades para encontrar repuestos, accesorios y talleres de confianza. 
+            A menudo, se ven obligados a llevar sus motos a lugares inseguros, dejando al azar la calidad del servicio y la 
+            legalidad de los productos. La falta de opiniones y reseñas limita sus opciones y desconocen las ubicaciones de 
+            talleres cercanos. Además, solicitar servicios de grúa puede ser complicado, ya que no siempre tienen acceso a 
+            números de contacto. También, la seguridad virtual es un problema creciente al realizar compras, debido a la 
+            insuficiencia de filtros para validar a los vendedores.</p>
         </div>
     </div>
-  
 
-    <div class="objjetivos_esp">
-        <h2>OBJETIVOS ESPECIFICOS</h2>
+    <div class="contenido">
+        <div class="objetivos">
+            <h2>OBJETIVO DEL PROYECTO</h2>
+            <div>
+                <p>El objetivo del proyecto RPM es generar una interacción segura, eficiente y confiable entre compradores y vendedores que facilite la comercialización y adquisición de moto partes en la ciudad de Bogotá y así promover el crecimiento sostenible del negocio, sea virtual o físico. A través del desarrollo de un sistema de información web con un meticuloso proceso de creación de perfiles verificados, además de realizar una herramienta de búsqueda y comunicación que complemente la interacción entre comprador y vendedor tanto en la búsqueda de autopartes como en adquirir servicios mecánicos. Como extra, crear una biblioteca en donde nuestros usuarios puedan conseguir números de contacto de grúas o mecánicos para asistencia en caso de que la motocicleta requiera alguno de estos servicios.</p>
+            </div>
+        </div>
     
-      <div>
-          <ol>
-            <li>Optimizar una interfaz para que el usuario navegue en la página web donde pueda buscar, comparar y comprar moto partes de manera rápida y fácil.</li>
-            
-            <li>Implementar una interfaz amigable en donde los usuarios puedan obtener servicios externos tales como el servicio de grúa, montallantas y demás de manera rápida y práctica.</li>
-            
-            <li>Implementar medidas de seguridad en pro de proteger la integridad e información del usuario donde se garantice la seguridad en la información.</li>
-            
-            <li>Implementar un sistema de reseñas y/o calificaciones en vendedores
-para que así se fomente la confianza entre vendedores y compradores. </li>
-            
-            <li>Promocionar los negocios locales que se destaquen por su buen
-desempeño en ventas a través de la aplicación.</li>
-          </ol>
-
-          </ul>
-      </div>
+        <div class="objjetivos_esp">
+            <h2>OBJETIVOS ESPECÍFICOS</h2>
+            <div>
+                <ol>
+                    <li>Optimizar una interfaz para que el usuario navegue en la página web donde pueda buscar, comparar y comprar moto partes de manera rápida y fácil.</li>
+                    <li>Implementar una interfaz amigable en donde los usuarios puedan obtener servicios externos tales como el servicio de grúa, montallantas y demás de manera rápida y práctica.</li>
+                    <li>Implementar medidas de seguridad en pro de proteger la integridad e información del usuario donde se garantice la seguridad en la información.</li>
+                    <li>Implementar un sistema de reseñas y/o calificaciones en vendedores para que así se fomente la confianza entre vendedores y compradores.</li>
+                    <li>Promocionar los negocios locales que se destaquen por su buen desempeño en ventas a través de la aplicación.</li>
+                </ol>
+            </div>
+        </div>
     </div>
-  </div>
 
 
-    </div>
+
     <div class="titulo">
         <h2>ALCANCE</h2>
     </div>
     <div class="titulo">
-      <p>La implementación de nuestra aplicación se centrará en aprovechar el ámbito de venta y distribución de repuestos para motocicletas que se concentra inicialmente en la ciudad de Bogotá. La promoción y difusión de este servicio se realizará en diferentes niveles, comenzando a nivel local en los barrios y alrededores de Bogotá. Las campañas de marketing se implementarán en regiones seleccionadas, así como asociaciones con empresas locales y talleres de motocicletas para presentar el dispositivo a la comunidad local. Una vez que la aplicación gane aceptación y confianza entre los locales y personas, decidimos expandir su potencial a entornos urbanos utilizando redes, redes sociales y eventos locales para llegar a la mayor cantidad de personas.
-      A nivel departamental, se explorarán asociaciones con organizaciones moteras, eventos y ferias relacionadas con motocicletas en todo el departamento de Cundinamarca, donde Bogotá se encuentra ubicada. Además, se considerará
-      la posibilidad de expandir la divulgación a ciudades y regiones cercanas dentro del departamento para captar una audiencia más amplia. Es fundamental establecer una estrategia de divulgación progresiva, comenzando a nivel local
-      para construir una base sólida y luego expandiéndose gradualmente a medida que la aplicación gane reconocimiento y confianza entre los usuarios.
-        </p>
+        <p>
+            El proyecto RPM tiene como objetivo desarrollar una plataforma digital que facilite la interacción segura y eficiente entre compradores y vendedores de repuestos y servicios para motocicletas en Bogotá. Esto incluye la creación de un sistema de información web con perfiles verificados para vendedores, herramientas de búsqueda y comunicación para facilitar la conexión entre usuarios y talleres, y un directorio de servicios como grúas y mecánicos. Además, se implementarán medidas de seguridad para proteger la información de los usuarios y un sistema de reseñas que fomente la confianza en la comunidad. Las estrategias de marketing se enfocarán en la promoción local, con el fin de expandir gradualmente la plataforma a otras áreas de Cundinamarca. Todo esto busca abordar las dificultades actuales de los usuarios, promoviendo un comercio sostenible y seguro en el sector de motocicletas.</p>
     </div>
+</div>
 
-  
-  <section id="imagenes">
-    <article>
-      <div class="titulo">
-        <h2>MATRIZ DE RIESGO Y CONTINGENCIA</h2>
-      </div>
-      <div class="titulo">
-        <img src="img/Matriz de riesgos.png" alt="matriz" width="600" height="800">
-      </div>
-    </article>
-    <article>
-      <div class="titulo">
-        <h2>MODELO DE ENTIDAD-RELACION</h2>
-      </div>
-      <div class="titulo">
-        <img src="img/TABLA ACTUALIZADA.png" alt="modelo relacional" width="700" height="600">
-      </div>
-    </article>
-  </section>
-  <section id="contacto">
-      <!-- esto es para crear el pie de pagina -->
-    <footer class="estilogris">
-      <div class="section-container footer-container">
-        <div>
-          <h4>Sobre nosotros</h4>
-          <p>Conocenos</p>
-          <p>Preguntas frecuentes</p>
-          <P> TERMINOS Y CONDICIONES </P>
-          <P> POLITICA DE PRIVACIDAD</P>
-        </div>
-        <div>
-          <h4> Siguenos en:</h4>
-          <P> Facebook</P>
-          <P>Instagram </P>
-        </div>
-        <div>
-          <h4> Contactenos</h4>
-          <P><a href="RPM@GMAIL.COM">RPM@GMAIL.COM</a></P>
-          <P> (601)5692358 Bogota </P>
-          <P> Cra 163 # 125 - 25</P>
-        </div>
+<div class="container hidden" id="about">
+    <h2>Sobre Nosotros</h2>
+    <p>Aquí puedes agregar información sobre la empresa y los servicios que ofreces.</p>
+</div>
 
-      </div>
-    </footer>
-  </section>
-  
+<div class="container hidden" id="sem1">
+    <h2>Semestre 1</h2>
+    <p>En primer semestre nos encargamos de crear la documentación de nuestro proyecto a la que posteriormente le hicimos sus respectivos ajustes y ampliamos los objetivos.</p>
+    
+    <!-- Enlaces añadidos -->
+    <div class="content-section" style="margin-top: 20px;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Documentación Complementaria</h4>
+            <p>Esta sección incluye documentación relevante que respalda el desarrollo del proyecto, incluyendo análisis de requerimientos y detalles sobre las tecnologías utilizadas.</p>
+        </div>
+        <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <iframe src="https://drive.google.com/file/d/1_s4qO4sHnX4Ba1MwkfkGwXhO-sHAp-FR/preview" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    </div>
+    <a href="https://drive.google.com/file/d/1_s4qO4sHnX4Ba1MwkfkGwXhO-sHAp-FR/view?usp=sharing" target="_blank">Ver PDF en una nueva pestaña</a>
+
+    <div class="content-section" style="margin-top: 20px;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Documentación Adicional</h4>
+            <p>Incluye análisis y detalles que son esenciales para comprender el desarrollo del proyecto.</p>
+        </div>
+        <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <iframe src="https://drive.google.com/file/d/169Nx8BZ8QiPERc2letYUSSTEMq0qjVKR/preview" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    </div>
+    <a href="https://drive.google.com/file/d/169Nx8BZ8QiPERc2letYUSSTEMq0qjVKR/view?usp=sharing" target="_blank">Ver PDF en una nueva pestaña</a>
+
+    <div class="content-section" style="margin-top: 20px;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Documentación Final</h4>
+            <p>Este documento resume los objetivos y el contexto del proyecto, ofreciendo una visión clara de lo que se logró en el primer semestre.</p>
+        </div>
+        <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <iframe src="https://drive.google.com/file/d/1GhoH8JC2j59byL5eZQj9uRqhkPz5FPSR/preview" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    </div>
+    <a href="https://drive.google.com/file/d/1GhoH8JC2j59byL5eZQj9uRqhkPz5FPSR/view?usp=sharing" target="_blank">Ver PDF en una nueva pestaña</a>
+</div>
+
+
+<div class="container hidden" id="sem2">
+    <h2>Semestre 2</h2>
+    <p>En segundo semestre nos enfocamos en el desarrollo inicial del proyecto, abordando aspectos clave como el diseño y la implementación de las funcionalidades básicas.</p>
+
+    <!-- Documentación Complementaria -->
+    <div class="content-section" style="margin-top: 20px;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Documentación Complementaria</h4>
+            <p>Esta sección incluye documentación relevante que respalda el desarrollo del proyecto, incluyendo análisis de requerimientos y detalles sobre las tecnologías utilizadas.</p>
+        </div>
+        <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <iframe src="https://drive.google.com/file/d/18VmMQHEgPKrYLJQpp3jaxER36G_iaSTI/preview" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    </div>
+    <a href="https://drive.google.com/file/d/18VmMQHEgPKrYLJQpp3jaxER36G_iaSTI/view?usp=sharing" target="_blank">Ver PDF en una nueva pestaña</a>
+
+    <!-- Nuevo PDF -->
+    <div class="content-section" style="margin-top: 20px;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Documentación Adicional</h4>
+            <p>Este documento complementa la información presentada, ofreciendo detalles adicionales sobre el desarrollo del proyecto.</p>
+        </div>
+        <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <iframe src="https://drive.google.com/file/d/1y0qm4H90bawcER7euATcShHeoOfpccpE/preview" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    </div>
+    <a href="https://drive.google.com/file/d/1y0qm4H90bawcER7euATcShHeoOfpccpE/view?usp=sharing" target="_blank">Ver PDF en una nueva pestaña</a>
+</div>
+
+
+
+<div class="container hidden" id="sem3">
+    <h2>Semestre 3</h2>
+    <p>En tercer semestre nos enfocamos en pulir la documentación de primer semestre, el HTML y el proyecto.</p>
+    <div class="content-section" style="display: flex; align-items: flex-start;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Información Adicional</h4>
+            <p>Se contará con una primera parte donde se habla de la visión que tenemos frente al 
+                proyecto dejando claro cuáles son nuestros puntos de partida y nuestro enfoque.<br>
+                Continuamos con la descripción general del proyecto donde abarcaremos los puntos clave y 
+                puntos críticos que se presentarían durante la implementación del software, aquellos 
+                requisitos tendrán como propósito atacar la problemática presentada manteniendo los 
+                estándares de calidad esperados.<br>
+                Por último, desglosar las funciones que debe realizar el sistema para presentar un producto 
+                final donde se resalten las virtudes del programa. </p>
+        </div>
+        <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <iframe src="https://drive.google.com/file/d/1fOm5FEnXIr6KUlS_DWwYduUV2wjSf6w7/preview" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    </div>
+    <a href="https://drive.google.com/uc?id=1fOm5FEnXIr6KUlS_DWwYduUV2wjSf6w7" target="_blank">Ver PDF en una nueva pestaña</a>
+
+    <!-- Documentación Complementaria -->
+    <div class="content-section" style="margin-top: 20px;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Documentación Complementaria</h4>
+            <p>En esta sección se incluirá la documentación que respalda el desarrollo del proyecto, incluyendo 
+            análisis de requerimientos y detalles sobre las tecnologías utilizadas.</p>
+        </div>
+        <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <iframe src="https://drive.google.com/file/d/1gXXTvjIwFTrWk_ErjT9GePRfLPrgNd_a/preview" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    </div>
+    <a href="https://drive.google.com/file/d/1gXXTvjIwFTrWk_ErjT9GePRfLPrgNd_a/view?usp=sharing" target="_blank">Ver nuevo PDF en una nueva pestaña</a>
+
+    <!-- Enlaces para PDF y Excel -->
+    <div class="content-section" style="margin-top: 20px;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Documentación PDF</h4>
+            <p>Este documento complementa la información presentada, incluyendo detalles relevantes sobre el desarrollo del proyecto.</p>
+        </div>
+        <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <iframe src="https://drive.google.com/file/d/1kBjMC3tBlldGDIRsSuuafQdatyg76PZ-/preview" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    </div>
+    <a href="https://drive.google.com/file/d/1kBjMC3tBlldGDIRsSuuafQdatyg76PZ-/view?usp=sharing" target="_blank">Ver PDF en una nueva pestaña</a>
+
+    <!-- Enlace para descargar el Excel -->
+    <div class="content-section" style="margin-top: 20px;">
+        <div class="text-content" style="flex: 2; margin-right: 20px;">
+            <h4>Descargar Documentación Excel</h4>
+            <p>El archivo de Excel incluye información adicional que apoya el desarrollo y la organización del proyecto.</p>
+        </div>
+        <div style="flex: 1;">
+            <a href="https://docs.google.com/spreadsheets/d/1kVQV4Pr3KoEpoUWxJmIrSSRoUYhce8Fq/export?format=xlsx" target="_blank" style="display: inline-block; padding: 10px; background-color: #007BFF; color: white; border-radius: 5px; text-align: center; text-decoration: none;">Descargar Excel</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container hidden" id="contact">
+    <h2>Contacto</h2>
+    <p>Para más información, no dudes en contactarnos:</p>
+    <p>Email: RPM@autopartes.com</p>
+    <p>Teléfono: +57 300 3418876</p>
+</div>
+
+<footer>
+    <p>&copy; 2024 RPM. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    function showSection(sectionId) {
+        // Ocultar todas las secciones
+        const sections = document.querySelectorAll('.container');
+        sections.forEach(section => {
+            section.classList.add('hidden');
+        });
+
+        // Mostrar la sección seleccionada
+        const selectedSection = document.getElementById(sectionId);
+        if (selectedSection) {
+            selectedSection.classList.remove('hidden');
+        }
+    }
+
+    // Muestra la sección de inicio al cargar la página
+    window.onload = function() {
+        showSection('home');
+    };
+</script>
+
 </body>
-
-
 </html>
