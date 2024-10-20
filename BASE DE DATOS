@@ -1,2 +1,242 @@
+create database RPM
+
+Use RPM
+
+CREATE TABLE IF NOT EXISTS Perfil(Usuario INTEGER NOT NULL PRIMARY KEY,
+    TipoUsuario varchar (50),
+    Nombre TEXT NOT NULL,
+    Imagen BLOB,
+    Correo VARCHAR(100) UNIQUE,
+    Direccion TEXT,
+    Telefono TEXT NOT NULL,
+    FechaRegistro DATE NOT NULL);
+    
+
+CREATE TABLE IF NOT EXISTS InformacionVendedor(InfoVendedor INTEGER PRIMARY KEY,
+  Horarios  TEXT NOT NULL,
+  DiasAtencion TEXT NOT NULL,
+  RedesSociales TEXT,
+  CONSTRAINT FKInVendedor FOREIGN KEY(InfoVendedor) REFERENCES Perfil(Usuario));
+  
+  
+CREATE TABLE IF NOT EXISTS Categoria(IdCategoria INTEGER PRIMARY KEY NOT NULL,
+	NombreCategoria TEXT NOT NULL);
+    
+CREATE TABLE IF NOT EXISTS Producto(IdProducto INTEGER PRIMARY KEY,
+    Categoria INT NOT NULL,
+    NombreProducto TEXT NOT NULL,
+    Descripcion TEXT NOT NULL,
+    Valor DECIMAL (10, 3) NOT NULL,
+    CONSTRAINT FKCategoria FOREIGN KEY(Categoria)REFERENCES Categoria(IdCategoria));
+
+CREATE TABLE IF NOT EXISTS Publicaciones(IdPublicaciones INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    Comercio INTEGER NOT NULL,
+    Titulo TEXT NOT NULL,
+    TipoProducto INTEGER NOT NULL,
+    Imagen BLOB ,
+    FechaRegistro DATE NOT NULL,
+    CONSTRAINT FKPublicaciones FOREIGN KEY(Comercio) REFERENCES Perfil(Usuario),
+    CONSTRAINT FKProducto FOREIGN KEY(TipoProducto)REFERENCES Producto(IdProducto));
+    
+CREATE TABLE IF NOT EXISTS Opiniones(IdOpinion INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IdPublicacion INTEGER NOT NULL,
+    NombreUsuario TEXT NOT NULL,
+    Comentario TEXT NOT NULL,
+    Calificacion INTEGER NOT NULL,
+    FechaOpinion DATE NOT NULL,
+    CONSTRAINT FKOpinion FOREIGN KEY(IdPublicacion)REFERENCES Publicaciones(IdPublicaciones));
+
+CREATE TABLE CarritoCompras(IdCarrito INT PRIMARY KEY AUTO_INCREMENT,
+	IdCliente INT, 
+    DetallePublicacion INT,
+    Cantidad INT, 
+    CONSTRAINT FKCarrito FOREIGN KEY(IdCliente) REFERENCES Perfil(Usuario),
+    CONSTRAINT FKDetallePub FOREIGN KEY(DetallePublicacion) REFERENCES Publicaciones(IdPublicaciones));
+
+CREATE TABLE Factura(IdFactura INT PRIMARY KEY AUTO_INCREMENT, 
+    Usuario INTEGER NOT NULL,
+    Nit_Comercio INTEGER NOT NULL,
+    Publicacion INT NOT NULL, 
+    Producto TEXT NOT NULL,
+    Cantidad INTEGER NOT NULL,
+    ValorUnidad DECIMAL (10, 3) NOT NULL,
+    TotalPago DECIMAL (10, 3) NOT NULL,
+    RegistroCompra DATE NOT NULL, 
+    CONSTRAINT FKFactura FOREIGN KEY(Publicacion) REFERENCES Publicaciones(IdPublicaciones));
+
+
+CREATE TABLE Inventario(Id_inventario INT PRIMARY KEY AUTO_INCREMENT,
+	IdFactura INT, 
+    IdProducto INT, 
+    Cantidad INT, 
+    TotalCompra DECIMAL (10, 3) NOT NULL); 
+
+INSERT INTO categoria(IdCategoria, NombreCategoria)
+    VALUES (1, 'accesorios'), 
+    (2, 'autopartes'),
+    (3, 'servicios mecanicos'),
+    (4, "servicio de grua");
+
+
+INSERT INTO Perfil(Usuario, TipoUsuario, Nombre, Correo, Direccion, Telefono, FechaRegistro) VALUES 
+ (1001, 'Natural', 'david duarte','daviddrte@outlook.com', 'cra 153 # 69 -56', 3165486598, '2023-05-05'), 
+ (1002, 'Natural', 'carlos duarte','carlduarte@hotmail.com', 'cra 54 # 89 -16', 3161321565, '2023-01-28'),
+ (1003, 'Natural','martha sanchez', 'marthasan@hotmail.es', 'av 30 # 69 - 109', 3126593219, '2023-03-15'), 
+ (1004, 'Natural', 'yaneth suarez','yansua@gmail.com', 'calle 16 #31-2', 3206578235, '2023-08-15'),
+ (1005, 'Natural', 'liliana rojas', 'lilirojas@outlook.es', 'av cra 68 # 65- 52', 3115546569, '2023-09-08'), 
+ (1006, 'Natural', 'carlos rangel', 'carangel@hotmail.com', 'cra 163 # 156- 58', 3176545615, '2023-03-25'),
+ (1007, 'Natural', 'duvan cortes', 'duvancortes@gmail.com', 'calle 85 # 165 - 25', 3016215635, '2023-05-21'), 
+ (1008, 'Natural', 'alejandro caravante', 'alejocarav@gmail.es', 'calle 27 # 136 - 58', 3215166998, '2023-04-08'),
+ (1009, 'Natural', 'isabella castiblanco', 'isacast@hotmail.com', 'calle 38 # 26 - 58', 3155648135, '2023-02-08'),
+ (1010, 'Natural', 'sara lopez', 'saralopez@gmail.es', 'cra 58 # 198 - 68', 3111561354, '2023-02-13'),
+ (101, 'Comerciante', 'gesti', 'gesti@outlook.com', 'cra 85# 149 - 40', 5649868, '2023-01-27'), 
+ (102, 'Comerciante', 'luquity', 'operacionesliquity.com', ' av cra 50 # 49 - 27', 5615455, '2023-06-27'),
+ (103, 'Comerciante', 'lexer', 'lexerlatam@gamil.es', 'cra 152 # 96 - 58', 7456386, '2022-12-24'), 
+ (104, 'Comerciante', 'grupo bc', 'bcgrupo@hotmail.es', 'calle 80 # 96 - 102', 7438896, '2023-04-22'),
+ (105, 'Comerciante', 'tvs', 'tvsbogota@bog.com', 'av 80 # 59 - 103', 6858159, '2023-07-20'), 
+ (106, 'Comerciante', 'auteco', 'motos@auteco.com', ' calle 195 # 169 - 28', 8186589, '2023-05-01'),
+ (107, 'Comerciante','yamaha', 'motos@yamaha.es', 'calle 182 # 19 - 105', 5784418, '2023-03-26'), 
+ (108, 'Comerciante', 'bajaj', 'bogbajaj@motos.com', ' av cra 152 # 139 - 58', 5159168, '2023-09-30'),
+ (109, 'Comerciante', 'hero', 'motos@herobog.com', ' trasversal 95 # 30 - 85', 1563345, '2023-06-15'), 
+ (110, 'Comerciante','victory mobility', 'bogota@victorymobility.com', ' calle 159 # 48 - 69', 1561568, '2023-05-30'),
+ (200, 'Prestador de servicios', 'gruas toscana', 'gruas@toscana.es', ' cra 128 # 15 - 79', 3021684685, '2024-05-01'),
+ (201, 'Prestador de servicios', 'gruas el gordo', 'servicios@elgordo.com', ' calle 152 # 38 - 91', 3155684895, '2023-12-30'),
+ (202, 'Prestador de servicios', 'FelipeGrua', 'bogota@felipegrua.com', ' av. cra 98 # 130 - 69', 3156562543, '2023-10-20'), 
+ (203, 'Prestador de servicios', 'Servicios GyR', 'gruas@serviciosGyR.es', ' calle 117 # 28 - 19', 3201561568, '2024-01-17'),
+ (204, 'Prestador de servicios', 'bogotaGr', 'Gr@bogotamobility.com', ' calle 139 # 148 - 13', 3014054145, '2023-09-28'),
+ (205, 'Prestador de servicios', 'GruaColombia', 'GruaColombia@outlook.com', ' Cra 26 # 129 - 72', 3025515452, '2024-03-28');
+
+INSERT INTO Producto(IdProducto, Categoria, NombreProducto, Descripcion, Valor) VALUES
+    (10001, 1 ,'casco moto', 'cascos de toda las tallas', 450.000),
+    (10002, 3 ,'servicio mecanico', 'se realiza calibraciones de valvulas', 70.000),
+    (10003, 1 ,'guantes', 'venta de guantes', 85.000),
+    (10004, 2 ,'kit de arrastre', 'kit de arrastre duke 200', 120.000),
+    (10005, 2 ,'guardabarro', 'guardabarro yamaha Bws 125', 68.000),
+    (10006, 1 ,'chaqueta reflectiva', 'chaquetas reflectivas ', 95.000),
+    (10007, 3 ,'mantenimiento de moto', 'mantenimiento general del motor', 215.000),
+    (10008, 3 ,'tecnomecanica', 'tecno. para motos y carros', 119.200),
+    (10009, 2 ,'filtro de aire', 'filtro de aire alto flujo', 45.000),
+    (10010, 1 ,'portaplacas', 'porta placa Ns 200', 65.000),
+    (2011, 4, "servicio de grua", "servicio de grua 24/7", 50.000),
+    (2012, 4, "servicio de grua", "servicio de grua bogota", 65.000),
+    (2013, 4, "servicio de grua", "servicios de grua", 50.000),
+    (2014, 4, "servicio de grua", "servicio de grua", 45.000);
+
+INSERT INTO Publicaciones(Comercio, Titulo, TipoProducto, FechaRegistro) VALUES
+(101, 'VENTA CASCO DE MOTOS', 10001, '2023-04-26'),
+(102, 'CALIBRACION  EN MOTOS', 10002, '2023-09-09'),
+(103, 'VENTA DE GUANTES', 10003, '2023-08-08'),
+(104, 'KIT DE ARRASTRE PARA TODA MOTO', 10004, '2023-03-24'),
+(105, 'CONSIGUE TU GUARDABARRO AQUI', 10005, '2023-06-20'),
+(106, 'CHAQUETA REFLECTIVA', 10006, '2023-02-24'),
+(107, 'SERVICIOS DE MANTENIMIENTO', 10007, '2023-03-20'),
+(108, 'ADQUIERE TU TECNOMECANICA', 10008, '2022-12-24'),
+(109, 'FILTRO DE AIRE PARA APACHE', 10009, '2023-06-24'),
+(200, 'SERVICIO DE GRUAS 24/04', 2011, '2023-10-21'),
+(202, 'SERVICIO DE GRUAS 24/04', 2012, '2023-11-15'),
+(203, 'SERVICIO DE GRUAS 24/04', 2013, '2023-01-04'),
+(204, 'SERVICIO DE GRUAS 24/04', 2014, '2023-12-20'),
+(102, 'KIT DE ARRASTRE PARA PULSAR', 10004, '2023-09-09'),
+(103, 'MANTENIMIENTO PARA TU MOTO', 10007, '2023-08-08'),
+(200, 'FILTRO DE AIRE ALTO FLUJO', 10009, '2023-10-21'),
+(202, 'SERVICIO DE GRUA', 2011, '2023-11-15'), 
+(108, 'SERVICIO DE GRUA 24/7', 2014, '2022-12-24'),
+(109, 'CASCO ICH', 10001, '2023-06-24');
+
+
+INSERT INTO Opiniones(IdPublicacion, NombreUsuario, Comentario,
+    Calificacion, FechaOpinion) VALUES
+    (2, 'david duarte', 'buen servicio', 5, '2023-04-28'),
+    (3,'carlos duarte', 'demora en entrega', 3, '2023-09-15'),
+    (15,'martha sanchez','confiable', 5, '2023-08-10'),
+    (18,'yaneth suarez','excelente servicio', 5, '2023-03-25'),
+    (10,'liliana rojas','pesimo servicio', 1, '2023-06-28'),
+    (11,'carlos rangel','excelente servicio', 5, '2023-04-19'),
+    (19,'duvan cortes','demora en entrega, buen estado', 2, '2023-10-28'),
+    (19,'alejandro caravante','se entrego en buen estado pero tardio', 4, '2023-07-20'),
+    (5,'isabella castiblanco','mal servicio en la entrega, mal estado', 1, '2023-03-28'),
+    (14,'sara lopez','hubo un poco de demora', 4, '2023-09-28'),
+    (3,'andrea perez','llego rapido, buen servico', 5, '2024-01-28'),
+    (3,'octivo rojas','excelente servicio, rapido en llegar', 5, '2024-05-17'),
+    (14,'pedro cortes','buen servicio pero se demoro demasiado', 4, '2024-04-18');
+
+INSERT INTO InformacionVendedor (InfoVendedor, Horarios, DiasAtencion, RedesSociales)
+    VALUES (101, '08:00-17:00', 'Lunes-Viernes','@GestiMoto202'),
+    (102, '07:00-16:00', 'Lunes-Sabado','@Operacionesliquitty'),
+    (103, '08:00-18:00', 'Lunes-Viernes','@MotosLatamLex'),
+    (104, '07:00-17:00', 'Lunes-Jueves','@Bcgrupo_Accesorios'),
+    (105, '08:00-17:00', 'Lunes-Viernes','@TvsMotos_BOG'),
+    (106, '08:00-17:00', 'Lunes-Sabado','@Auteco_Bogota24'),
+    (107, '08:00-16:00', 'Lunes-Domingo','@YamahaMotos2024'),
+    (108, '08:00-17:00', 'Lunes-Viernes','@Bog_315Bajaj'),
+    (109, '07:00-16:00', 'Lunes-Domingo','@MotosHero_Bog'),
+    (110, '08:00-18:00', 'Lunes-Sabado','@MovilityBogota');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TRIGGER
+
+DELIMITER %
+CREATE TRIGGER INS_FACTURA
+AFTER INSERT ON CarritoCompras
+FOR EACH ROW
+BEGIN
+	DECLARE NitComercio INT;
+    DECLARE Public INT;
+    DECLARE NomProducto TEXT;
+    DECLARE ValUnidad DECIMAL (10, 2);
+    DECLARE Total DECIMAL (10, 2);
+    DECLARE Registro DATETIME;
+    
+		SELECT P.IdPublicaciones INTO Public FROM Publicaciones P
+        WHERE P.IdPublicaciones = NEW.DetallePublicacion;
+        
+		SELECT P.Comercio INTO NitComercio FROM Publicaciones P
+		WHERE P.IdPublicaciones = NEW.DetallePublicacion;
+        
+        SELECT PD.NombreProducto INTO NomProducto FROM Producto PD
+        JOIN Publicaciones P ON PD.IdProducto = P.TipoProducto
+        WHERE P.IdPublicaciones = NEW.DetallePublicacion;
+
+		SELECT PD.Valor INTO ValUnidad FROM Producto PD
+		JOIN Publicaciones P ON PD.IdProducto = P.TipoProducto
+		WHERE P.IdPublicaciones = NEW.DetallePublicacion;
+        
+        SET Registro = NOW();
+        SET Total = ValUnidad * NEW.Cantidad;
+        
+	INSERT INTO Factura (Usuario, Nit_Comercio, Publicacion, Producto, Cantidad, ValorUnidad, TotalPago, RegistroCompra) VALUES 
+    (NEW.IdCliente, Nit_Comercio, Public, NomProducto, NEW.Cantidad, ValUnidad, Total, Registro);
+END;
+
+
+
+DELIMITER %
+CREATE TRIGGER INSER_INVENTARIO
+AFTER INSERT ON Factura
+FOR EACH ROW
+BEGIN
+	DECLARE Producto INT;
+		SELECT P.TipoProducto INTO Producto FROM Publicaciones P
+        JOIN Factura F ON P.IdPublicaciones = F.Publicacion
+        WHERE F.IdFactura = NEW.IdFactura;
+    INSERT INTO Inventario(IdFactura, IdProducto, Cantidad, TotalCompra) VALUES
+    (NEW.IdFactura, Producto, NEW.Cantidad, NEW.TotalPago);
+END;
+
+
+
+
 https://colab.research.google.com/drive/1LQ5WSex1epQjh4GoMAvUSzG62_fpxyPg
 https://colab.research.google.com/drive/17G7ThS7zWZbPmirjWgvTJFy5UaZF5Znc?usp=sharing
