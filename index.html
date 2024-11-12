@@ -104,6 +104,33 @@
         .titulo {
             margin-top: 30px;
         }
+        .container1 {
+            width: 80%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #BF2302;
+            border-radius: 8px;
+        }
+
+                .form-container {
+            margin-top: 40px;
+        }
+
+        .centrado{
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .Estilo-Image {
+        width: 300;
+        height: 150;
+        border: 5px solid #000;
+        border-radius: 10px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    }
         ol {
             margin-left: 20px;
         }
@@ -117,6 +144,7 @@
             <h1 style="margin: 0;">RPM</h1>
         </div>
         <div class="header-options">
+            <a href="perfil.html" class="header-option" onclick="showSection('Ingreso')">Ingreso Perfil</a>
             <a href="#" class="header-option" onclick="showSection('home')">Inicio</a>
             <a href="#" class="header-option" onclick="showSection('about')">Acerca de Nosotros</a>
             <a href="#" class="header-option" onclick="showSection('sem1')">Semestre 1</a>
@@ -125,9 +153,6 @@
             <a href="#" class="header-option" onclick="showSection('contact')">Contáctanos</a>
         </div>
     </header>
-    
-    
-    
 
 <div class="container" id="home">
     <h2>Bienvenido a RPM</h2>
@@ -180,7 +205,12 @@
 
 <div class="container hidden" id="about">
     <h2>Sobre Nosotros</h2>
-    <p>Proximamente encontraras nuestros avatares y una descripcion sobre nosotros!</p>
+    <p>Somos una plataforma que facilitara la busqueda de productos o servicios mecánicos centralizados en el mercado automotriz
+        dando solucion a aquellos problemas de inseguridad que se pueden presentar en plataformas virtuales. 
+    </p>
+    <h4>¿Cual es nuestro plus?</h4>
+    <p> Ofrecemos los mejores servicios para tu moto en 1 solo lugar, segun tu necesidad con nosotros 
+        encontraras confianza, excelente servicio y dispocision enfocado en ti. </p>
 </div>
 
 <div class="container hidden" id="sem1">
@@ -318,17 +348,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 <div class="container hidden" id="contact">
     <h2>Contacto</h2>
     <p>Para más información, no dudes en contactarnos:</p>
@@ -338,6 +357,15 @@
 
 <footer>
     <p>&copy; 2024 RPM. Todos los derechos reservados.</p>
+<h4>Contactanos</h4>
+<div>
+    
+        <p>Redes Sociales: @RPM.service</p>
+        <p>Email: servicioalcliente@RPM.com</p>
+        <p>Telefono: 601 7382944</p>
+    
+
+</div>
 </footer>
 
 <script>
