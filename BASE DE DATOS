@@ -19,11 +19,11 @@ CREATE TABLE IF NOT EXISTS InformacionVendedor(InfoVendedor INTEGER PRIMARY KEY,
   CONSTRAINT FKInVendedor FOREIGN KEY(InfoVendedor) REFERENCES Perfil(Usuario));
   
   
-CREATE TABLE IF NOT EXISTS Categoria(IdCategoria INTEGER PRIMARY KEY NOT NULL,
+CREATE TABLE IF NOT EXISTS Categoria(IdCategoria INTEGER PRIMARY KEY,
 	NombreCategoria TEXT NOT NULL);
     
 CREATE TABLE IF NOT EXISTS Producto(IdProducto INTEGER PRIMARY KEY,
-    Categoria INT NOT NULL,
+    Categoria INTEGER NOT NULL,
     NombreProducto TEXT NOT NULL,
     Descripcion TEXT NOT NULL,
     Valor DECIMAL (10, 3) NOT NULL,
@@ -46,16 +46,16 @@ CREATE TABLE IF NOT EXISTS Opiniones(IdOpinion INTEGER PRIMARY KEY NOT NULL AUTO
     FechaOpinion DATE NOT NULL,
     CONSTRAINT FKOpinion FOREIGN KEY(IdPublicacion)REFERENCES Publicaciones(IdPublicaciones));
 
-CREATE TABLE CarritoCompras(IdCarrito INT PRIMARY KEY AUTO_INCREMENT,
-	IdCliente INT, 
-    DetallePublicacion INT,
-    Cantidad INT, 
+CREATE TABLE CarritoCompras(IdCarrito INTEGER PRIMARY KEY AUTO_INCREMENT,
+	IdCliente INTEGER, 
+    DetallePublicacion INTEGER,
+    Cantidad INTEGER, 
     CONSTRAINT FKCarrito FOREIGN KEY(IdCliente) REFERENCES Perfil(Usuario),
     CONSTRAINT FKDetallePub FOREIGN KEY(DetallePublicacion) REFERENCES Publicaciones(IdPublicaciones));
 
-CREATE TABLE Factura(IdFactura INT PRIMARY KEY AUTO_INCREMENT, 
+CREATE TABLE Factura(IdFactura INTEGER PRIMARY KEY AUTO_INCREMENT, 
     Usuario INTEGER NOT NULL,
-    Nit_Comercio INTEGER NOT NULL,
+    NitComercio INTEGER NOT NULL,
     Publicacion INT NOT NULL, 
     Producto TEXT NOT NULL,
     Cantidad INTEGER NOT NULL,
@@ -65,11 +65,22 @@ CREATE TABLE Factura(IdFactura INT PRIMARY KEY AUTO_INCREMENT,
     CONSTRAINT FKFactura FOREIGN KEY(Publicacion) REFERENCES Publicaciones(IdPublicaciones));
 
 
-CREATE TABLE Inventario(Id_inventario INT PRIMARY KEY AUTO_INCREMENT,
-	IdFactura INT, 
-    IdProducto INT, 
-    Cantidad INT, 
-    TotalCompra DECIMAL (10, 3) NOT NULL); 
+CREATE TABLE Inventario(Id_inventario INTEGER PRIMARY KEY AUTO_INCREMENT,
+	IdFactura INTEGER, 
+    IdProducto INTEGER, 
+    Cantidad INTEGER, 
+    TotalCompra DECIMAL (10, 3) NOT NULL, 
+    CONSTRAINT FKfacinve FOREIGN KEY(IdFactura) REFERENCES Factura(IdFactura),
+    CONSTRAINT FKprodinve FOREIGN KEY(IdProducto) REFERENCES Producto(IdProducto)); 
+
+CREATE TABLE IF NOT EXISTS Credenciales (
+    IdCredencial INT PRIMARY KEY,
+    NombreUsuario VARCHAR(50) NOT NULL UNIQUE,
+    Contrasena VARCHAR(255) NOT NULL,
+    TipoUsuario ENUM('Comerciante', 'Natural') NOT NULL,
+    CONSTRAINT FKUsuario FOREIGN KEY (IdCredencial) REFERENCES Perfil(Usuario)
+);
+
 
 INSERT INTO categoria(IdCategoria, NombreCategoria)
     VALUES (1, 'accesorios'), 
@@ -172,9 +183,69 @@ INSERT INTO InformacionVendedor (InfoVendedor, Horarios, DiasAtencion, RedesSoci
     (109, '07:00-16:00', 'Lunes-Domingo','@MotosHero_Bog'),
     (110, '08:00-18:00', 'Lunes-Sabado','@MovilityBogota');
 
+INSERT INTO CarritoCompras (IdCliente, DetallePublicacion, Cantidad) VALUES
+(1001, 1, 2), (1002, 2, 1), (1003, 3, 3), (1004, 4, 1), (1005, 5, 2),
+(1006, 6, 1), (1007, 7, 4), (1008, 8, 1), (1009, 9, 2), (1010, 10, 1),
+(1009, 11, 3), (1001, 12, 2), (1007, 13, 1), (1002, 14, 2), (1006, 15, 1);
 
 
+INSERT INTO Factura (Usuario, NitComercio, Publicacion, Producto, Cantidad, ValorUnidad, TotalPago, RegistroCompra) VALUES
+(1001, 101, 1, 'casco moto', 2, 450.000, 900.000, '2023-05-06'),
+(1002, 106, 2, 'calibracion en motos', 1, 70.000, 70.000, '2023-09-10'),  
+(1003, 110, 3, 'guantes', 3, 85.000, 255.000, '2023-08-09'), 
+(1004, 102, 4, 'kit de arrastre', 1, 120.000, 120.000, '2023-03-25'),
+(1005, 105, 5, 'guardabarro', 2, 68.000, 136.000, '2023-09-09'), 
+(1006, 108, 6, 'chaqueta reflectiva', 1, 95.000, 95.000, '2023-07-10'), 
+(1007, 104, 7, 'mantenimiento de moto', 4, 215.000, 860.000, '2023-05-15'), 
+(1008, 109, 8, 'tecnomecanica', 1, 119.200, 119.200, '2023-06-20'),
+(1009, 107, 9, 'filtro de aire', 2, 45.000, 90.000, '2023-07-01'), 
+(1010, 103, 10, 'portaplacas', 1, 65.000, 65.000, '2023-08-11'),  
+(1003, 102, 4, 'kit de arrastre', 1, 120.000, 120.000, '2023-04-17'),
+(1007, 101, 1, 'casco moto', 1, 450.000, 450.000, '2023-03-18'),
+(1009, 109, 19, 'casco ICH', 2, 350.000, 700.000, '2023-07-12');
 
+INSERT INTO Inventario (IdFactura, IdProducto, Cantidad, TotalCompra) VALUES
+(1, 10001, 2, 900.000),
+(2, 10002, 1, 70.000),
+(3, 10003, 3, 255.000),
+(4, 10004, 1, 120.000),
+(5, 10005, 2, 136.000),
+(6, 10006, 1, 95.000),
+(7, 10007, 4, 860.000),
+(8, 10008, 1, 119.200),
+(9, 10009, 2, 90.000),
+(10, 10010, 1, 65.000),
+(11, 2011, 3, 150.000),
+(12, 2012, 2, 130.000),
+(13, 2013, 1, 50.000);
+
+INSERT INTO Credenciales (IdCredencial, NombreUsuario, Contrasena, TipoUsuario) VALUES
+(1001, 'daviddrte', 'password1', 'Natural'),
+(1002, 'carlduarte', 'password2', 'Natural'),
+(1003, 'marthasan', 'password3', 'Natural'),
+(1004, 'yansua', 'password4', 'Natural'),
+(1005, 'lilirojas', 'password5', 'Natural'),
+(1006, 'carangel', 'password6', 'Natural'),
+(1007, 'duvancortes', 'password7', 'Natural'),
+(1008, 'alejocarav', 'password8', 'Natural'),
+(1009, 'isacast', 'password9', 'Natural'),
+(1010, 'saralopez', 'password10', 'Natural'),
+(101, 'gesti', 'password11', 'Comerciante'),
+(102, 'luquity', 'password12', 'Comerciante'),
+(103, 'lexerlatam', 'password13', 'Comerciante'),
+(104, 'bcgrupo', 'password14', 'Comerciante'),
+(105, 'tvsbogota', 'password15', 'Comerciante'),
+(106, 'motosauteco', 'password16', 'Comerciante'),
+(107, 'yamaha', 'password17', 'Comerciante'),
+(108, 'bogbajaj', 'password18', 'Comerciante'),
+(109, 'herobog', 'password19', 'Comerciante');
+(110, 'victorymobility', 'password20', 'Comerciante'),
+(200, 'gruasToscana', 'password21', 'Prestador de servicios'),
+(201, 'gruasElGordo', 'password22', 'Prestador de servicios'),
+(202, 'felipegrua', 'password23', 'Prestador de servicios'),
+(203, 'serviciosGyR', 'password24', 'Prestador de servicios'),
+(204, 'bogotaGr', 'password25', 'Prestador de servicios'),
+(205, 'gruaColombia', 'password26', 'Prestador de servicios');
 
 
 
