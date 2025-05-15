@@ -60,7 +60,7 @@ CREATE TABLE Factura(IdFactura INTEGER PRIMARY KEY AUTO_INCREMENT,
     Producto TEXT NOT NULL,
     Cantidad INTEGER NOT NULL,
     ValorUnidad DECIMAL (10, 3) NOT NULL,
-    TotalPago DECIMAL (10, 3) NOT NULL,
+    TotalPago DECIMAL (10, 3) NOT NULL GENERATED ALWAYS AS (Cantidad * ValorUnidad) STORED,
     RegistroCompra DATE NOT NULL, 
     CONSTRAINT FKFactura FOREIGN KEY(Publicacion) REFERENCES Publicaciones(IdPublicaciones));
 
