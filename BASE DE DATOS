@@ -64,8 +64,7 @@ CREATE TABLE Factura(IdFactura INTEGER PRIMARY KEY AUTO_INCREMENT,
     TotalPago DECIMAL (10, 3) GENERATED ALWAYS AS (Cantidad * ValorUnidad) STORED,
     RegistroCompra DATE NOT NULL, 
     CONSTRAINT FKFactura FOREIGN KEY(Publicacion) REFERENCES Publicaciones(IdPublicaciones),
-    CONSTRAINT FKFactura_Usuario FOREIGN KEY(Usuario) REFERENCES Perfil(Usuario),
-    CONSTRAINT FKProduc FOREIGN KEY(Producto) REFERENCES producto(IdProducto));
+    CONSTRAINT FKFactura_Usuario FOREIGN KEY(Usuario) REFERENCES Perfil(Usuario));
 
 
 CREATE TABLE Inventario(Id_inventario INTEGER PRIMARY KEY AUTO_INCREMENT,
