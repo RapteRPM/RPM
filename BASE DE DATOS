@@ -57,26 +57,25 @@ CREATE TABLE Factura(IdFactura INTEGER PRIMARY KEY AUTO_INCREMENT,
     Usuario INTEGER NOT NULL,
     NitComercio INTEGER NOT NULL,
     Publicacion INT NOT NULL, 
-    Producto TEXT NOT NULL,
+    Producto INTEGER NOT NULL,
     Cantidad INTEGER NOT NULL,
     ValorUnidad DECIMAL (10, 3) NOT NULL,
     TotalPago DECIMAL (10, 3) NOT NULL GENERATED ALWAYS AS (Cantidad * ValorUnidad) STORED,
     RegistroCompra DATE NOT NULL, 
-    CONSTRAINT FKFactura FOREIGN KEY(Publicacion) REFERENCES Publicaciones(IdPublicaciones));
+    CONSTRAINT FKFactura FOREIGN KEY(Publicacion) REFERENCES Publicaciones(IdPublicaciones),
+    CONSTRAINT FKProduc FOREIGN KEY(Producto) REFERENCES producto(IdProducto));
 
 
 CREATE TABLE Inventario(Id_inventario INTEGER PRIMARY KEY AUTO_INCREMENT,
-	IdFactura INTEGER, 
-    IdProducto INTEGER, 
+	IdFactura INTEGER,  
     Cantidad INTEGER, 
     TotalCompra DECIMAL (10, 3) NOT NULL, 
-    CONSTRAINT FKfacinve FOREIGN KEY(IdFactura) REFERENCES Factura(IdFactura),
-    CONSTRAINT FKprodinve FOREIGN KEY(IdProducto) REFERENCES Producto(IdProducto)); 
+    CONSTRAINT FKfacinve FOREIGN KEY(IdFactura) REFERENCES Factura(IdFactura); 
 
-CREATE TABLE IF NOT EXISTS Credenciales (
+CREATE TABLE IF NOT EXISTS credenciales (
     IdCredencial INT PRIMARY KEY,
-    NombreUsuario VARCHAR(50) NOT NULL UNIQUE,
-    Contrasena VARCHAR(255) NOT NULL,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    contrasena VARCHAR(100) NOT NULL,
     TipoUsuario ENUM('Comerciante', 'Natural', 'Prestador de servicios') NOT NULL,
     CONSTRAINT FKUsuario FOREIGN KEY (IdCredencial) REFERENCES Perfil(Usuario)
 );
@@ -191,7 +190,7 @@ INSERT INTO CarritoCompras (IdCliente, DetallePublicacion, Cantidad) VALUES
 
 
 INSERT INTO Factura (Usuario, NitComercio, Publicacion, Producto, Cantidad, ValorUnidad, TotalPago, RegistroCompra) VALUES
-(1001, 101, 1, 'casco moto', 2, 450.000, 900.000, '2023-05-06'),
+(1001, 101, 1, 5, 2, 450.000, 900.000, '2023-05-06'),
 (1002, 106, 2, 'calibracion en motos', 1, 70.000, 70.000, '2023-09-10'),  
 (1003, 110, 3, 'guantes', 3, 85.000, 255.000, '2023-08-09'), 
 (1004, 102, 4, 'kit de arrastre', 1, 120.000, 120.000, '2023-03-25'),
@@ -206,20 +205,20 @@ INSERT INTO Factura (Usuario, NitComercio, Publicacion, Producto, Cantidad, Valo
 (1007, 109, 5, 'guardabarro', 2, 68.000, 136.000, '2023-07-12');
 
 
-INSERT INTO Inventario (IdFactura, IdProducto, Cantidad, TotalCompra) VALUES
-(1, 5, 2, 900.000),
-(2, 6, 1, 70.000),
-(3, 7, 3, 255.000),
-(4, 8, 1, 120.000),
-(5, 9, 2, 136.000),
-(6, 10, 1, 95.000),
-(7, 11, 4, 860.000),
-(8, 12, 1, 119.200),
-(9, 13, 2, 90.000),
-(10, 14, 1, 450.000),
-(11, 1, 1, 120.000),
-(12, 2, 1, 95.000),
-(13, 3, 2, 136.000);
+INSERT INTO Inventario (IdFactura, Cantidad, TotalCompra) VALUES
+(1, 2, 900.000),
+(2, 1, 70.000),
+(3, 3, 255.000),
+(4, 1, 120.000),
+(5, 2, 136.000),
+(6, 1, 95.000),
+(7, 4, 860.000),
+(8, 1, 119.200),
+(9, 2, 90.000),
+(10, 1, 450.000),
+(11, 1, 120.000),
+(12, 1, 95.000),
+(13, 2, 136.000);
 
 INSERT INTO Credenciales (IdCredencial, NombreUsuario, Contrasena, TipoUsuario) VALUES
 (1001, 'daviddrte', 'password1', 'Natural'),
