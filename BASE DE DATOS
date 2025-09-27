@@ -5,7 +5,7 @@ Use RPM
 CREATE TABLE IF NOT EXISTS Perfil(Usuario INTEGER NOT NULL PRIMARY KEY,
     TipoUsuario varchar (50),
     Nombre TEXT NOT NULL,
-    Imagen BLOB,
+    FotoPerfil BLOB,
     Correo VARCHAR(100) UNIQUE,
     Direccion TEXT,
     Telefono TEXT NOT NULL,
@@ -13,9 +13,14 @@ CREATE TABLE IF NOT EXISTS Perfil(Usuario INTEGER NOT NULL PRIMARY KEY,
     
 
 CREATE TABLE IF NOT EXISTS InformacionVendedor(InfoVendedor INTEGER PRIMARY KEY,
-  Horarios  TEXT NOT NULL,
+  NombreComercio TEXT NOT NULL,
+  NitComercio INTEGER NOT NULL,
   DiasAtencion TEXT NOT NULL,
   RedesSociales TEXT,
+  Latitud DECIMAL(10, 6) NOT NULL,
+  Longitud DECIMAL(10, 6) NOT NULL,
+  HoraInicio  TIME NOT NULL,
+  HoraInicio  TIME NOT NULL,
   CONSTRAINT FKInVendedor FOREIGN KEY(InfoVendedor) REFERENCES Perfil(Usuario));
   
   
@@ -25,19 +30,19 @@ CREATE TABLE IF NOT EXISTS Categoria(IdCategoria INTEGER PRIMARY KEY,
 CREATE TABLE IF NOT EXISTS Producto(IdProducto INTEGER PRIMARY KEY AUTO_INCREMENT,
     Categoria INTEGER NOT NULL,
     NombreProducto TEXT NOT NULL,
-    Descripcion TEXT NOT NULL,
-    Valor DECIMAL (10, 3) NOT NULL,
+    Valor DECIMAL (10, 2) NOT NULL,
     CONSTRAINT FKCategoria FOREIGN KEY(Categoria)REFERENCES Categoria(IdCategoria));
 
 CREATE TABLE IF NOT EXISTS Publicaciones(IdPublicaciones INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Comercio INTEGER NOT NULL,
     Titulo TEXT NOT NULL,
-    TipoProducto INTEGER NOT NULL,
+    TipoCategoria INTEGER NOT NULL,
+	Descripcion TEXT NOT NULL,
     Imagen BLOB ,
-    Valor DECIMAL (10, 3) NOT NULL,
+    Valor DECIMAL (10, 2) NOT NULL,
     FechaRegistro DATE NOT NULL,
     CONSTRAINT FKPublicaciones FOREIGN KEY(Comercio) REFERENCES Perfil(Usuario),
-    CONSTRAINT FKProducto FOREIGN KEY(TipoProducto)REFERENCES Producto(IdProducto));
+    CONSTRAINT FKCategoria FOREIGN KEY(TipoCategoria)REFERENCES Categoria(IdCategoria));
     
 CREATE TABLE IF NOT EXISTS Opiniones(IdOpinion INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     IdPublicacion INTEGER NOT NULL,
@@ -48,11 +53,12 @@ CREATE TABLE IF NOT EXISTS Opiniones(IdOpinion INTEGER PRIMARY KEY NOT NULL AUTO
     CONSTRAINT FKOpinion FOREIGN KEY(IdPublicacion)REFERENCES Publicaciones(IdPublicaciones));
 
 CREATE TABLE CarritoCompras(IdCarrito INTEGER PRIMARY KEY AUTO_INCREMENT,
-	IdCliente INTEGER, 
-    DetallePublicacion INTEGER,
-    Cantidad INTEGER, 
+	IdCliente INTEGER,
+	Categoria INTEGER
+    Cantidad INTEGER,
+	Valor DECIMAL(10, 2),
     CONSTRAINT FKCarrito FOREIGN KEY(IdCliente) REFERENCES Perfil(Usuario),
-    CONSTRAINT FKDetallePub FOREIGN KEY(DetallePublicacion) REFERENCES Publicaciones(IdPublicaciones));
+    CONSTRAINT FKCategoria FOREIGN KEY(Categoria) REFERENCES Categoria(IdCategoria));
 
 CREATE TABLE Factura(IdFactura INTEGER PRIMARY KEY AUTO_INCREMENT, 
     Usuario INTEGER NOT NULL,
@@ -68,7 +74,8 @@ CREATE TABLE Factura(IdFactura INTEGER PRIMARY KEY AUTO_INCREMENT,
 
 
 CREATE TABLE Inventario(Id_inventario INTEGER PRIMARY KEY AUTO_INCREMENT,
-	IdFactura INTEGER,  
+	IdFactura INTEGER,
+	Producto INTEGER,
     Cantidad INTEGER, 
     TotalCompra DECIMAL (10, 3) NOT NULL, 
     CONSTRAINT FKfacinve FOREIGN KEY(IdFactura) REFERENCES Factura(IdFactura)); 
