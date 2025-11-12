@@ -1,5 +1,8 @@
 [phases.setup]
-nixPkgs = ["python3"]
+nixPkgs = ['python310']
+
+[phases.install]
+cmds = ['echo "No dependencies to install"']
 
 [start]
-cmd = "python3 server.py"
+cmd = 'python3 server.py'
